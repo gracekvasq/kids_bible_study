@@ -1,61 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Adventure Quest</title>
 
-<meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-<title>Bible Adventure Quest</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div id="game">
+<div id="app">
 
-    <header>
+    <header class="topbar">
 
-        <h1>⚔️ Bible Adventure Quest</h1>
+        <div class="logo">
+            ⚔️ Bible Adventure Quest
+        </div>
 
-        <div id="stats">
+        <div class="stats">
 
-            <div>
-                ⭐
-                <span id="gems">0</span>
+            <div class="stat">
+                ⭐ <span id="gems">0</span>
             </div>
 
-            <div>
-                ❤️
-                <span id="hearts">3</span>
+            <div class="stat">
+                ❤️ <span id="hearts">3</span>
             </div>
 
-            <div>
-                🛡
-                <span id="armorCount">0</span>/6
+            <div class="stat">
+                🛡 <span id="armor">0</span>/6
             </div>
 
         </div>
 
     </header>
 
-    <main id="screen">
-
-    </main>
+    <main id="screen"></main>
 
 </div>
 
 <script src="data.js"></script>
-<script src="inventory.js"></script>
-<script src="achievements.js"></script>
-<script src="save.js"></script>
-<script src="missions.js"></script>
-<script src="puzzles.js"></script>
-<script src="script.js"></script>
+<script src="game.js"></script>
 
 </body>
-
 </html>
