@@ -1,7 +1,31 @@
-const verses={
+const GAME = {
 
-truth:"John 14:6",
+player:{
 
-armor:"Ephesians 6:10-18"
+gems:0,
+
+hearts:3,
+
+armor:[],
+
+mission:1
+
+},
+
+missions:[
+
+{
+
+id:1,
+
+title:"The Belt of Truth",
+
+verse:"John 14:6",
+
+reward:"Belt of Truth"
+
+}
+
+]
 
 };
