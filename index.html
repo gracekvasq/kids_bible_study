@@ -421,65 +421,104 @@ Paul
 
 <script>
 
-let gems=0;
-let armor=0;
+let gems = 0;
+let armor = 0;
+let hearts = 3;
+
+const inventory = [];
 
 function hideScreens(){
-
-document.querySelectorAll(".screen").forEach(screen=>{
-
-screen.classList.remove("active");
-
-})
-
+    document.querySelectorAll(".screen").forEach(screen=>{
+        screen.classList.remove("active");
+    });
 }
 
 function showMap(){
-
-hideScreens();
-
-document.getElementById("map").classList.add("active");
-
+    hideScreens();
+    document.getElementById("map").classList.add("active");
 }
 
 function startMission1(){
+    hideScreens();
+    document.getElementById("mission1").classList.add("active");
+}
 
-hideScreens();
+function updateStats(){
 
-document.getElementById("mission1").classList.add("active");
+    document.getElementById("gems").innerHTML = gems;
+    document.getElementById("armor").innerHTML = armor;
+
+    let heartDisplay = "";
+
+    for(let i=0;i<hearts;i++){
+        heartDisplay += "❤️ ";
+    }
+
+    document.getElementById("hearts").innerHTML = heartDisplay;
 
 }
 
 function wrong(){
 
-alert("❌ Not quite! Try again.");
+    hearts--;
+
+    updateStats();
+
+    if(hearts<=0){
+
+        alert("Oh no! You lost all your hearts.\nGod gives us another chance!\nLet's try again.");
+
+        hearts=3;
+
+        showMap();
+
+        updateStats();
+
+        return;
+
+    }
+
+    alert("Not quite! Try again!");
 
 }
 
 function correct(){
 
-alert("🎉 Great Job!\n\nYou earned 10 Faith Gems!");
+    gems+=10;
 
-gems+=10;
+    armor=1;
 
-armor=1;
+    inventory.push("🛡 Belt of Truth");
 
-document.getElementById("gems").innerText=gems;
+    updateStats();
 
-document.getElementById("armor").innerText=armor;
+    document.getElementById("progressFill").style.width="25%";
 
-document.getElementById("progressFill").style.width="25%";
-
-hideScreens();
-
-document.getElementById("map").classList.add("active");
-
-document.querySelector(".level").classList.add("complete");
-
-document.querySelectorAll(".level")[1].classList.remove("locked");
+    unlockChest();
 
 }
 
+function unlockChest(){
+
+    hideScreens();
+
+    document.getElementById("treasure").classList.add("active");
+
+}
+
+function collectReward(){
+
+    alert("You earned:\n\n⭐10 Faith Gems\n🛡 Belt of Truth Badge");
+
+    hideScreens();
+
+    document.getElementById("map").classList.add("active");
+
+    document.querySelectorAll(".level")[0].classList.add("complete");
+
+    document.querySelectorAll(".level")[1].classList.remove("locked");
+
+}
 </script>
 
 </body>
