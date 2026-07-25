@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acts 2: The Holy Spirit Adventure - Extended</title>
+    <title>Acts 2: The Holy Spirit Adventure - Advanced Edition</title>
     <style>
         * {
             margin: 0;
@@ -246,17 +246,12 @@
             }
         }
 
-        .word-scramble-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
         .scramble-item {
             background: white;
             border: 2px solid var(--border-color);
             border-radius: 12px;
             padding: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .scramble-word {
@@ -283,56 +278,6 @@
             background: #E8F5E9;
         }
 
-        .character-match-grid {
-            display: grid;
-            gap: 10px;
-        }
-
-        .match-row {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .match-left {
-            background: var(--accent-light);
-            border-radius: 12px;
-            padding: 0.75rem;
-            text-align: center;
-            font-weight: 500;
-            color: var(--accent);
-            font-size: 14px;
-        }
-
-        .match-arrow {
-            font-size: 20px;
-            text-align: center;
-            color: var(--text-light);
-        }
-
-        .match-right {
-            background: white;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 0.75rem;
-            text-align: center;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .match-right:hover {
-            border-color: var(--accent);
-        }
-
-        .match-right.selected {
-            background: var(--accent-light);
-            border-color: var(--accent);
-            color: var(--accent);
-            font-weight: 500;
-        }
-
         .verse-input {
             width: 100%;
             padding: 0.75rem;
@@ -347,119 +292,100 @@
             background: #E8F5E9;
         }
 
-        .drag-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
+        .fill-blank {
+            padding: 0.5rem 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            width: 100%;
+            margin: 0.5rem 0;
+            color: var(--text-dark);
         }
 
-        .category-group {
-            background: var(--surface-pale);
+        .fill-blank.correct {
+            border-color: var(--success);
+            background: #E8F5E9;
+        }
+
+        .verse-comparison {
+            background: white;
+            border: 2px solid var(--border-color);
             border-radius: 12px;
             padding: 1rem;
+            margin-bottom: 1rem;
         }
 
-        .category-title {
-            font-size: 13px;
+        .verse-label {
+            font-size: 12px;
             font-weight: 600;
             color: var(--accent);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             text-transform: uppercase;
         }
 
-        .drop-zone {
-            background: white;
-            border: 2px dashed var(--border-color);
-            border-radius: 12px;
-            padding: 0.75rem;
-            min-height: 40px;
-            margin-bottom: 0.75rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            align-items: flex-start;
-            align-content: flex-start;
+        .verse-text {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .drop-zone.drag-over {
-            border-color: var(--accent);
-            background: var(--accent-light);
-        }
-
-        .draggable-item {
-            background: var(--accent);
-            color: white;
-            border-radius: 8px;
-            padding: 0.5rem 0.75rem;
-            font-size: 13px;
-            cursor: grab;
-            white-space: nowrap;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        .draggable-item:active {
-            cursor: grabbing;
-            opacity: 0.8;
-        }
-
-        .draggable-item.in-zone {
-            background: var(--success);
-        }
-
-        .scene-builder {
-            background: var(--surface-pale);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            min-height: 250px;
-            margin-bottom: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            position: relative;
-        }
-
-        .scene-item {
-            font-size: 48px;
-            cursor: grab;
-            user-select: none;
-            -webkit-user-select: none;
-            transition: transform 0.2s;
-        }
-
-        .scene-item:active {
-            cursor: grabbing;
-            transform: scale(1.2);
-        }
-
-        .scene-instructions {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 12px;
+        .verse-reference-small {
+            font-size: 11px;
             color: var(--text-light);
-            padding: 0.5rem;
+            font-style: normal;
         }
 
-        .draggable-items {
-            display: flex;
-            flex-wrap: wrap;
+        .match-grid {
+            display: grid;
             gap: 10px;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-color);
         }
 
-        .draggable-items .draggable-item {
-            background: var(--accent);
-            color: white;
-            padding: 0.75rem 1rem;
-            cursor: grab;
+        .match-pair {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .match-left {
+            background: var(--accent-light);
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+        }
+
+        .match-arrow {
+            font-size: 18px;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .match-right {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .match-right:hover {
+            border-color: var(--accent);
+        }
+
+        .match-right.selected {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            color: var(--accent);
+            font-weight: 500;
         }
 
         .button-group {
@@ -545,6 +471,14 @@
             margin-top: 0.25rem;
         }
 
+        .comprehension-box {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
         .checkbox-item {
             display: flex;
             align-items: center;
@@ -566,48 +500,6 @@
             height: 20px;
             cursor: pointer;
             accent-color: var(--accent);
-        }
-
-        .memory-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-
-        .memory-card {
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 1.5rem;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .memory-card:active {
-            transform: scale(0.95);
-        }
-
-        .memory-card.flipped {
-            background: white;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-            font-weight: 600;
-        }
-
-        .memory-card.matched {
-            background: #E8F5E9;
-            color: var(--success);
-            border: 2px solid var(--success);
-            cursor: default;
         }
 
         .certificate {
@@ -633,17 +525,13 @@
             margin: 1rem 0;
             font-style: italic;
         }
-
-        .hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <div class="app-container">
         <div class="header">
-            <h1>Acts 2: The Holy Spirit Adventure 🚀</h1>
-            <p>Learn about the day God changed everything!</p>
+            <h1>Acts 2: Advanced Bible Study 📖</h1>
+            <p>Deep dive into God's Word at Pentecost</p>
         </div>
 
         <div class="progress-section">
@@ -651,7 +539,7 @@
                 <div class="progress-fill" id="progressFill" style="width: 0%"></div>
             </div>
             <div class="progress-text">
-                <span id="progressText">Section 1 of 13</span>
+                <span id="progressText">Section 1 of 15</span>
             </div>
         </div>
 
@@ -670,269 +558,265 @@
 
             sections: [
                 {
-                    title: "The Day Arrives ✨",
-                    subtitle: "Something incredible is about to happen",
+                    title: "The Day of Pentecost 💨",
+                    subtitle: "Understanding the beginning",
                     icon: "💨",
-                    type: "story",
                     content: `
                         <p class="story-text">
-                            Jesus' followers have been waiting in Jerusalem. Jesus told them to wait for a special gift from God—the Holy Spirit. About 120 people are gathered together when suddenly... WHOOSH! A sound like a mighty wind fills the entire house!
+                            Pentecost means "50 days." After Jesus rose from the dead, He told His followers to wait in Jerusalem for the Holy Spirit. On the 50th day, something incredible happened. Let's read what the Bible says:
                         </p>
+
                         <div class="verse-box">
-                            "Suddenly a sound like the blowing of a violent wind came from heaven and filled the whole house where they were sitting. All of them were filled with the Holy Spirit and began to speak in other languages as the Spirit enabled them."
-                            <span class="verse-reference">Acts 2:2-4</span>
+                            "When the day of Pentecost came, all the believers were gathered together in one place. Suddenly a sound like the blowing of a violent wind came from heaven and filled the whole house where they were sitting. They saw what seemed to be tongues of fire that separated and came to rest on each of them. All of them were filled with the Holy Spirit and began to speak in other languages as the Spirit enabled them."
+                            <span class="verse-reference">Acts 2:1-4</span>
                         </div>
+
                         <div class="activity-section">
-                            <div class="activity-label">🎯 Quick Quiz</div>
-                            <div class="activity-question">What did the followers hear first?</div>
+                            <div class="activity-label">🎯 What Does This Mean?</div>
+                            <div class="activity-question">When it says "violent wind," what do you think it means?</div>
                             <div class="option-grid">
-                                <button class="option-btn" onclick="app.checkAnswer(this, true)">A sound like a rushing, mighty wind</button>
-                                <button class="option-btn" onclick="app.checkAnswer(this, false)">Angels singing</button>
-                                <button class="option-btn" onclick="app.checkAnswer(this, false)">Thunder and rain</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, true)">A powerful, strong force showing God's strength</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">A scary storm that hurt people</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">A weather report for Jerusalem</button>
                             </div>
                             <div class="feedback" id="feedback"></div>
                         </div>
 
                         <div class="activity-section">
-                            <div class="activity-label">✨ Imagine This</div>
-                            <div class="activity-question">What do you think it felt like to be there?</div>
-                            <textarea class="reflection-input" placeholder="Describe what you imagine..."></textarea>
+                            <div class="activity-label">📝 Three Signs of the Holy Spirit</div>
+                            <div class="activity-question">According to Acts 2:1-4, what three things showed the Holy Spirit had come?</div>
+                            <div class="comprehension-box">
+                                <p style="font-size: 14px; margin-bottom: 0.75rem;"><strong>1. Sound like a violent _______________</strong></p>
+                                <input type="text" class="fill-blank" placeholder="Type the word..." onchange="app.checkBlank(this, 'WIND')">
+                            </div>
+                            <div class="comprehension-box">
+                                <p style="font-size: 14px; margin-bottom: 0.75rem;"><strong>2. What seemed to be tongues of _______________</strong></p>
+                                <input type="text" class="fill-blank" placeholder="Type the word..." onchange="app.checkBlank(this, 'FIRE')">
+                            </div>
+                            <div class="comprehension-box">
+                                <p style="font-size: 14px; margin-bottom: 0.75rem;"><strong>3. All were filled with the _______________  _______________</strong></p>
+                                <input type="text" class="fill-blank" placeholder="Two words..." onchange="app.checkBlank(this, 'HOLY SPIRIT')">
+                            </div>
                         </div>
                     `
                 },
                 {
-                    title: "Peter Gets Brave 🦁",
-                    subtitle: "The scared follower becomes bold",
-                    icon: "🦁",
-                    type: "quiz",
+                    title: "Peter's First Words 🗣️",
+                    subtitle: "Understanding his message",
+                    icon: "🗣️",
                     content: `
                         <p class="story-text">
-                            Before this day, Peter had been terrified. He'd even pretended he didn't know Jesus! But now, filled with the Holy Spirit, he stood up in front of a HUGE crowd and spoke boldly about Jesus. How did he find such courage?
+                            When people heard the sound and saw the signs, a crowd gathered. Peter, who had been afraid just weeks before, stood up boldly. Let's see what he said:
                         </p>
+
                         <div class="verse-box">
-                            "Peter stood up with the Eleven, raised his voice and addressed the crowd: 'Fellow Jews, let me explain this to you...'"
+                            "Peter stood up with the Eleven, raised his voice and addressed the crowd: 'Fellow Jews and all of you who live in Jerusalem, let me explain this to you; listen carefully to what I say.'"
                             <span class="verse-reference">Acts 2:14</span>
                         </div>
 
-                        <div class="activity-section">
-                            <div class="activity-label">🎯 Question 1</div>
-                            <div class="activity-question">What made Peter brave enough to speak?</div>
-                            <div class="option-grid">
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, true, 'q1')">The power of the Holy Spirit</button>
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, false, 'q1')">He drank lots of juice</button>
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, false, 'q1')">His friends pushed him forward</button>
-                            </div>
-                            <div class="feedback" id="feedback-q1"></div>
-                        </div>
-
-                        <div class="activity-section">
-                            <div class="activity-label">🎯 Question 2</div>
-                            <div class="activity-question">What had Peter done before that made him scared?</div>
-                            <div class="option-grid">
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, true, 'q2')">He said he didn't know Jesus</button>
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, false, 'q2')">He broke Jesus' favorite plate</button>
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, false, 'q2')">He forgot where he lived</button>
-                            </div>
-                            <div class="feedback" id="feedback-q2"></div>
-                        </div>
-                    `
-                },
-                {
-                    title: "Word Scramble Game 🔤",
-                    subtitle: "Unscramble key words from the story",
-                    icon: "🔤",
-                    type: "scramble",
-                    content: `
-                        <p class="story-text">
-                            Test your memory! Unscramble these important words from what you've learned so far. Think about what each word means in the Acts 2 story!
-                        </p>
-
-                        <div class="word-scramble-grid">
-                            <div class="scramble-item">
-                                <div class="scramble-word">TRPIIS</div>
-                                <input type="text" class="scramble-input" placeholder="Type the word..." onchange="app.checkScramble(this, 'SPIRIT')">
-                                <div class="feedback" style="margin-top: 0.5rem;"></div>
-                            </div>
-
-                            <div class="scramble-item">
-                                <div class="scramble-word">CEOURAG</div>
-                                <input type="text" class="scramble-input" placeholder="Type the word..." onchange="app.checkScramble(this, 'COURAGE')">
-                                <div class="feedback" style="margin-top: 0.5rem;"></div>
-                            </div>
-
-                            <div class="scramble-item">
-                                <div class="scramble-word">LIEVEBE</div>
-                                <input type="text" class="scramble-input" placeholder="Type the word..." onchange="app.checkScramble(this, 'BELIEVE')">
-                                <div class="feedback" style="margin-top: 0.5rem;"></div>
-                            </div>
-
-                            <div class="scramble-item">
-                                <div class="scramble-word">DNLIW</div>
-                                <input type="text" class="scramble-input" placeholder="Type the word..." onchange="app.checkScramble(this, 'WIND')">
-                                <div class="feedback" style="margin-top: 0.5rem;"></div>
-                            </div>
-
-                            <div class="scramble-item">
-                                <div class="scramble-word">TEPSECON</div>
-                                <input type="text" class="scramble-input" placeholder="Type the word..." onchange="app.checkScramble(this, 'PENTECOST')">
-                                <div class="feedback" style="margin-top: 0.5rem;"></div>
-                            </div>
-                        </div>
-                    `
-                },
-                {
-                    title: "Peter's Message 📢",
-                    subtitle: "He tells the crowd about Jesus",
-                    icon: "📢",
-                    type: "story",
-                    content: `
-                        <p class="story-text">
-                            Peter speaks to the crowd. He tells them about Jesus—how He lived, did miracles, was treated badly, died, and rose from the dead! The crowd listens closely to every word.
-                        </p>
                         <div class="verse-box">
-                            "God has made this Jesus, whom you crucified, both Lord and Messiah."
+                            "'Men of Israel, listen to this: Jesus of Nazareth was a man accredited to you by God through miracles, wonders and signs, which God did among you through him, as you yourselves know.'"
+                            <span class="verse-reference">Acts 2:22</span>
+                        </div>
+
+                        <div class="activity-section">
+                            <div class="activity-label">💡 Peter's Boldness</div>
+                            <div class="activity-question">What do these verses show us about Peter's courage?</div>
+                            <div class="option-grid">
+                                <button class="option-btn" onclick="app.checkAnswer(this, true)">He stood up publicly and spoke clearly to the whole crowd</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">He whispered quietly to just a few people</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">He asked someone else to speak for him</button>
+                            </div>
+                            <div class="feedback" id="feedback"></div>
+                        </div>
+                    `
+                },
+                {
+                    title: "What Peter Taught 📚",
+                    subtitle: "The complete message",
+                    icon: "📚",
+                    content: `
+                        <p class="story-text">
+                            Peter explained what happened and why. He taught about Jesus' life, death, and resurrection. Here are the key verses:
+                        </p>
+
+                        <div class="verse-box">
+                            "'This man was handed over to you by God's deliberate plan and foreknowledge; and you, with the help of wicked men, put him to death by nailing him to the cross. But God raised him from the dead, freeing him from the agony of death, because it was impossible for death to keep its hold on him.'"
+                            <span class="verse-reference">Acts 2:23-24</span>
+                        </div>
+
+                        <div class="verse-box">
+                            "'God has raised this Jesus to life, and we are all witnesses of it. Exalted to the right hand of God, he has received from the Father the promised Holy Spirit and has poured out what you now see and hear.'"
+                            <span class="verse-reference">Acts 2:32-33</span>
+                        </div>
+
+                        <div class="verse-box">
+                            "'Therefore let all Israel be assured of this: God has made this Jesus, whom you crucified, both Lord and Messiah.'"
                             <span class="verse-reference">Acts 2:36</span>
                         </div>
 
                         <div class="activity-section">
-                            <div class="activity-label">✏️ Fill in the Blank</div>
-                            <div class="activity-question">Peter said: "Jesus is both ________ and Messiah"</div>
-                            <input type="text" class="fill-blank" placeholder="Type the missing word..." id="fillBlank1">
-                            <button class="option-btn" style="margin-top: 0.75rem;" onclick="app.checkBlank('fillBlank1', 'LORD')">Check Answer</button>
-                        </div>
-                    `
-                },
-                {
-                    title: "Character Match 🎯",
-                    subtitle: "Match people to what they did",
-                    icon: "🎯",
-                    type: "matching",
-                    content: `
-                        <p class="story-text">
-                            Let's connect the characters to their actions! Read each person or group and figure out what they did in the Acts 2 story. This helps us see the different roles people played!
-                        </p>
-
-                        <div class="activity-section">
-                            <div class="activity-label">🎯 Match Them Up</div>
-                            <div class="activity-question">Click the right-side boxes to match:</div>
-                            
-                            <div class="character-match-grid">
-                                <div class="match-row">
-                                    <div class="match-left">Peter</div>
+                            <div class="activity-label">🎯 Match the Truths</div>
+                            <div class="activity-question">Match what Peter taught with what happened:</div>
+                            <div class="match-grid">
+                                <div class="match-pair">
+                                    <div class="match-left">Jesus was put to death</div>
                                     <div class="match-arrow">→</div>
-                                    <div class="match-right" onclick="app.selectMatch(this, true)">Spoke boldly to the crowd</div>
+                                    <div class="match-right" onclick="app.selectMatch(this, true)">By nailing him to the cross</div>
                                 </div>
-                                <div class="match-row">
-                                    <div class="match-left">The Crowd</div>
+                                <div class="match-pair">
+                                    <div class="match-left">God raised Jesus</div>
                                     <div class="match-arrow">→</div>
-                                    <div class="match-right" onclick="app.selectMatch(this, true)">Listened and believed</div>
+                                    <div class="match-right" onclick="app.selectMatch(this, true)">From the dead</div>
                                 </div>
-                                <div class="match-row">
-                                    <div class="match-left">The Holy Spirit</div>
+                                <div class="match-pair">
+                                    <div class="match-left">Jesus is now at</div>
                                     <div class="match-arrow">→</div>
-                                    <div class="match-right" onclick="app.selectMatch(this, true)">Gave power and courage</div>
+                                    <div class="match-right" onclick="app.selectMatch(this, true)">The right hand of God</div>
                                 </div>
-                                <div class="match-row">
-                                    <div class="match-left">Jesus</div>
+                                <div class="match-pair">
+                                    <div class="match-left">Jesus is both</div>
                                     <div class="match-arrow">→</div>
-                                    <div class="match-right" onclick="app.selectMatch(this, true)">Rose from the dead!</div>
+                                    <div class="match-right" onclick="app.selectMatch(this, true)">Lord and Messiah</div>
                                 </div>
                             </div>
                         </div>
                     `
                 },
                 {
-                    title: "Hearts Change! ❤️",
-                    subtitle: "People respond to the message",
-                    icon: "❤️",
-                    type: "story",
+                    title: "The People's Response 🙏",
+                    subtitle: "What the crowd did",
+                    icon: "🙏",
                     content: `
                         <p class="story-text">
-                            When Peter finished speaking, something amazing happened! The people listening felt their hearts change deeply. They realized Jesus really WAS God's Son. They asked Peter, "What should we do?" Peter told them to believe and be baptized.
+                            When Peter finished speaking, something amazing happened. The people's hearts were deeply moved. Let's read what they said and did:
                         </p>
+
                         <div class="verse-box">
-                            "The crowd asked... 'What shall we do?' Peter replied, 'Repent and be baptized, every one of you, in the name of Jesus Christ...'"
-                            <span class="verse-reference">Acts 2:37-38</span>
+                            "'When the people heard this, they were cut to the heart and said to Peter and the other apostles, 'Brothers, what shall we do?'"
+                            <span class="verse-reference">Acts 2:37</span>
+                        </div>
+
+                        <div class="verse-box">
+                            "'Peter replied, 'Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of your sins. And you will receive the gift of the Holy Spirit.'"
+                            <span class="verse-reference">Acts 2:38</span>
+                        </div>
+
+                        <div class="verse-box">
+                            "'Those who accepted his message were baptized, and about three thousand were added to their number that day.'"
+                            <span class="verse-reference">Acts 2:41</span>
                         </div>
 
                         <div class="activity-section">
-                            <div class="activity-label">🎯 The Big Number</div>
-                            <div class="activity-question">How many people decided to follow Jesus that day?</div>
+                            <div class="activity-label">❓ True or False</div>
+                            <div class="activity-question">About 3,000 people chose to follow Jesus in one day.</div>
                             <div class="option-grid">
-                                <button class="option-btn" onclick="app.checkAnswer(this, false)">About 50 people</button>
-                                <button class="option-btn" onclick="app.checkAnswer(this, false)">About 500 people</button>
-                                <button class="option-btn" onclick="app.checkAnswer(this, true)">About 3,000 people! 🤯</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, true)">True - This is exactly what Acts 2:41 says!</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">False - It was only a few people</button>
                             </div>
                             <div class="feedback" id="feedback"></div>
                         </div>
+
+                        <div class="activity-section">
+                            <div class="activity-label">💭 Understanding the Meaning</div>
+                            <div class="activity-question">What does "cut to the heart" mean in this verse?</div>
+                            <div class="option-grid">
+                                <button class="option-btn" onclick="app.checkAnswer(this, true)">They felt deeply sorry and wanted to change</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">They had physical pain in their chests</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">They didn't believe what Peter said</button>
+                            </div>
+                            <div class="feedback" id="feedback2"></div>
+                        </div>
                     `
                 },
                 {
-                    title: "Verse Completion 🧩",
-                    subtitle: "Complete key Bible verses",
-                    icon: "🧩",
-                    type: "verse",
+                    title: "Bible Verse Scramble 🔤",
+                    subtitle: "Complete the verses",
+                    icon: "🔤",
                     content: `
                         <p class="story-text">
-                            Let's fill in the blanks to complete real verses from Acts 2! These are the actual words from the Bible that tell the story.
+                            Let's practice with actual Bible verses from Acts 2! Fill in the missing words. These are the EXACT words from Scripture!
                         </p>
 
                         <div class="activity-section">
-                            <div class="activity-label">1️⃣ First Verse</div>
-                            <p style="font-size: 14px; margin-bottom: 0.75rem;">
-                                "Suddenly a sound like the blowing of a violent <input type="text" class="verse-input" placeholder="WIND" onchange="app.checkVerse(this, 'WIND')"> came from heaven..."
+                            <div class="activity-label">1️⃣ Acts 2:4</div>
+                            <p style="font-size: 14px; margin-bottom: 0.75rem; font-style: italic;">
+                                "All of them were filled with the _____________ _____________ and began to speak in other languages as the Spirit enabled them."
                             </p>
+                            <input type="text" class="verse-input" placeholder="Two words..." onchange="app.checkVerse(this, 'HOLY SPIRIT')">
                         </div>
 
                         <div class="activity-section">
-                            <div class="activity-label">2️⃣ Second Verse</div>
-                            <p style="font-size: 14px; margin-bottom: 0.75rem;">
-                                "All of them were filled with the <input type="text" class="verse-input" placeholder="HOLY" onchange="app.checkVerse(this, 'HOLY')"> Spirit..."
+                            <div class="activity-label">2️⃣ Acts 2:14</div>
+                            <p style="font-size: 14px; margin-bottom: 0.75rem; font-style: italic;">
+                                "Peter stood up with the Eleven, _____________ his voice and addressed the crowd..."
                             </p>
+                            <input type="text" class="verse-input" placeholder="Type word..." onchange="app.checkVerse(this, 'RAISED')">
                         </div>
 
                         <div class="activity-section">
-                            <div class="activity-label">3️⃣ Third Verse</div>
-                            <p style="font-size: 14px; margin-bottom: 0.75rem;">
-                                "Peter stood up and <input type="text" class="verse-input" placeholder="RAISED" onchange="app.checkVerse(this, 'RAISED')"> his voice to address the crowd..."
+                            <div class="activity-label">3️⃣ Acts 2:22</div>
+                            <p style="font-size: 14px; margin-bottom: 0.75rem; font-style: italic;">
+                                "'Jesus of Nazareth was a man accredited to you by God through _____________, _____________ and signs...'"
                             </p>
+                            <input type="text" class="verse-input" placeholder="Two words..." onchange="app.checkVerse(this, 'MIRACLES WONDERS')">
                         </div>
 
                         <div class="activity-section">
-                            <div class="activity-label">4️⃣ Fourth Verse</div>
-                            <p style="font-size: 14px; margin-bottom: 0.75rem;">
-                                "Those who accepted his message were <input type="text" class="verse-input" placeholder="BAPTIZED" onchange="app.checkVerse(this, 'BAPTIZED')">..."
+                            <div class="activity-label">4️⃣ Acts 2:36</div>
+                            <p style="font-size: 14px; margin-bottom: 0.75rem; font-style: italic;">
+                                "'Therefore let all Israel be assured of this: God has made this Jesus, whom you crucified, both _____________ and Messiah.'"
                             </p>
+                            <input type="text" class="verse-input" placeholder="Type word..." onchange="app.checkVerse(this, 'LORD')">
                         </div>
 
                         <div class="activity-section">
-                            <div class="activity-label">5️⃣ Fifth Verse</div>
-                            <p style="font-size: 14px; margin-bottom: 0.75rem;">
-                                "And the Lord added to their number daily those who were being <input type="text" class="verse-input" placeholder="SAVED" onchange="app.checkVerse(this, 'SAVED')">."
+                            <div class="activity-label">5️⃣ Acts 2:38</div>
+                            <p style="font-size: 14px; margin-bottom: 0.75rem; font-style: italic;">
+                                "'Repent and be _____________, every one of you, in the name of Jesus Christ for the forgiveness of your sins.'"
                             </p>
+                            <input type="text" class="verse-input" placeholder="Type word..." onchange="app.checkVerse(this, 'BAPTIZED')">
                         </div>
                     `
                 },
                 {
-                    title: "The Church is Born 🏘️",
-                    subtitle: "A new family starts growing",
+                    title: "The Early Church 🏘️",
+                    subtitle: "What believers did together",
                     icon: "🏘️",
-                    type: "story",
                     content: `
                         <p class="story-text">
-                            All these new believers—3,000 of them!—stuck together like a family. They learned about Jesus, prayed together, ate meals, and shared everything they had. They even did amazing miracles! The whole city was amazed by what God was doing.
+                            After people believed in Jesus, they formed a new community. The Bible tells us exactly what they did. Let's read it:
                         </p>
+
                         <div class="verse-box">
-                            "Every day they continued to meet together... They broke bread in their homes and ate together with glad and sincere hearts... And the Lord added to their number daily those who were being saved."
-                            <span class="verse-reference">Acts 2:46-47</span>
+                            "'They devoted themselves to the apostles' teaching and to fellowship, to the breaking of bread and to prayer. Everyone was filled with awe at the many wonders and signs performed by the apostles.'"
+                            <span class="verse-reference">Acts 2:42-43</span>
+                        </div>
+
+                        <div class="verse-box">
+                            "'All the believers were together and had everything in common. They sold property and possessions to give to anyone who had need. Every day they continued to meet together in the temple courts. They broke bread in their homes and ate together with glad and sincere hearts, praising God and enjoying the favor of all the people.'"
+                            <span class="verse-reference">Acts 2:44-47</span>
+                        </div>
+
+                        <div class="verse-box">
+                            "'And the Lord added to their number daily those who were being saved.'"
+                            <span class="verse-reference">Acts 2:47</span>
                         </div>
 
                         <div class="activity-section">
-                            <div class="activity-label">☑️ What Did They Do?</div>
-                            <div class="activity-question">Check all the things the early church did together:</div>
+                            <div class="activity-label">☑️ What Did the Church Do?</div>
+                            <div class="activity-question">Check all the things that devoted believers did (from Acts 2:42-47):</div>
                             <label class="checkbox-item">
                                 <input type="checkbox">
-                                <span>📖 Learned about Jesus</span>
+                                <span>📚 Devoted themselves to the apostles' teaching</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>🤝 Had fellowship together</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>🍽️ Broke bread together (meals)</span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox">
@@ -940,174 +824,307 @@
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox">
-                                <span>🍽️ Shared meals</span>
+                                <span>❤️ Shared their possessions</span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox">
-                                <span>💝 Shared possessions</span>
+                                <span>⭐ Saw signs and wonders</span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox">
-                                <span>✨ Saw miracles happen</span>
+                                <span>😊 Had glad and sincere hearts</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>📈 Grew daily as people were saved</span>
                             </label>
                         </div>
                     `
                 },
                 {
-                    title: "Categorize the Details 🔗",
-                    subtitle: "Sort phrases into categories",
-                    icon: "🔗",
-                    type: "categorize",
+                    title: "Deeper Study 📖",
+                    subtitle: "Understanding Peter's boldness",
+                    icon: "📖",
                     content: `
                         <p class="story-text">
-                            Let's organize what we learned! Sort these phrases into the right categories to help you remember the different parts of the Acts 2 story.
+                            It's important to understand how AMAZING this was. Peter had denied even KNOWING Jesus just weeks before. But now he publicly claims Jesus is Lord in front of thousands! Let's understand this transformation:
+                        </p>
+
+                        <div class="verse-comparison">
+                            <div class="verse-label">Before Pentecost:</div>
+                            <div class="verse-text">
+                                "But Peter declared, 'Man, I don't know what you're talking about!' Just as he was speaking, the rooster crowed."
+                            </div>
+                            <div class="verse-reference-small">Luke 22:60-61</div>
+                        </div>
+
+                        <div class="verse-comparison">
+                            <div class="verse-label">After Pentecost (Acts 2:36):</div>
+                            <div class="verse-text">
+                                "'Therefore let all Israel be assured of this: God has made this Jesus, whom you crucified, both Lord and Messiah.'"
+                            </div>
+                            <div class="verse-reference-small">Acts 2:36</div>
+                        </div>
+
+                        <div class="activity-section">
+                            <div class="activity-label">🤔 Compare & Contrast</div>
+                            <div class="activity-question">What CHANGED Peter from denying Jesus to boldly proclaiming Him?</div>
+                            <div class="option-grid">
+                                <button class="option-btn" onclick="app.checkAnswer(this, true)">The Holy Spirit filled him with power and courage</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">He stopped being afraid of people</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">He practiced his speech many times</button>
+                            </div>
+                            <div class="feedback" id="feedback"></div>
+                        </div>
+
+                        <div class="activity-section">
+                            <div class="activity-label">💪 The Power of the Holy Spirit</div>
+                            <div class="activity-question">What do you learn about God from Peter's transformation?</div>
+                            <textarea style="width: 100%; padding: 0.75rem; border: 2px solid var(--border-color); border-radius: 8px; font-size: 14px; min-height: 80px;" placeholder="Write what you think..."></textarea>
+                        </div>
+                    `
+                },
+                {
+                    title: "Verse Meaning Matching 🧩",
+                    subtitle: "Connect verses to their meanings",
+                    icon: "🧩",
+                    content: `
+                        <p class="story-text">
+                            Sometimes Bible verses use language that needs explanation. Let's match verses to what they REALLY mean:
                         </p>
 
                         <div class="activity-section">
-                            <div class="activity-label">🎯 Drag to Organize</div>
-                            <div class="activity-question">Drag each phrase to the correct category:</div>
+                            <div class="activity-label">🎯 Match Verses to Meanings</div>
+                            <div class="activity-question">Connect each verse to its meaning:</div>
 
-                            <div class="category-group" style="margin-bottom: 1rem;">
-                                <div class="category-title">📢 Things Peter Said</div>
-                                <div class="drop-zone" id="zone1">
+                            <div class="match-grid">
+                                <div class="match-pair">
+                                    <div class="match-left" style="font-size: 12px;">Sound like a "violent wind"</div>
+                                    <div class="match-arrow">→</div>
+                                    <div class="match-right" onclick="app.selectMatch(this, true)">God's powerful force arrived</div>
                                 </div>
-                            </div>
-
-                            <div class="category-group" style="margin-bottom: 1rem;">
-                                <div class="category-title">⚡ Things That Happened</div>
-                                <div class="drop-zone" id="zone2">
+                                <div class="match-pair">
+                                    <div class="match-left" style="font-size: 12px;">Tongues of "fire"</div>
+                                    <div class="match-arrow">→</div>
+                                    <div class="match-right" onclick="app.selectMatch(this, true)">Visible sign of God's presence</div>
                                 </div>
-                            </div>
-
-                            <div class="category-group" style="margin-bottom: 1rem;">
-                                <div class="category-title">😊 How People Felt</div>
-                                <div class="drop-zone" id="zone3">
+                                <div class="match-pair">
+                                    <div class="match-left" style="font-size: 12px;">People "cut to the heart"</div>
+                                    <div class="match-arrow">→</div>
+                                    <div class="match-right" onclick="app.selectMatch(this, true)">They felt deeply sorrowful</div>
                                 </div>
-                            </div>
-
-                            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
-                                <div style="font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 0.75rem; text-transform: uppercase;">Available Phrases:</div>
-                                <div class="draggable-items" id="draggableItems">
-                                    <div class="draggable-item" draggable="true" ondragstart="app.dragStart(event)" data-category="1">God raised Jesus from dead</div>
-                                    <div class="draggable-item" draggable="true" ondragstart="app.dragStart(event)" data-category="2">Wind filled the house</div>
-                                    <div class="draggable-item" draggable="true" ondragstart="app.dragStart(event)" data-category="3">Amazed and astonished</div>
-                                    <div class="draggable-item" draggable="true" ondragstart="app.dragStart(event)" data-category="1">Repent and be baptized</div>
-                                    <div class="draggable-item" draggable="true" ondragstart="app.dragStart(event)" data-category="2">3,000 people believed</div>
-                                    <div class="draggable-item" draggable="true" ondragstart="app.dragStart(event)" data-category="3">Joyful and sincere hearts</div>
-                                    <div class="draggable-item" draggable="true" ondragstart="app.dragStart(event)" data-category="1">Jesus is Lord and Messiah</div>
-                                    <div class="draggable-item" draggable="true" ondragstart="app.dragStart(event)" data-category="2">Flames appeared above heads</div>
-                                    <div class="draggable-item" draggable="true" ondragstart="app.dragStart(event)" data-category="3">Changed hearts</div>
+                                <div class="match-pair">
+                                    <div class="match-left" style="font-size: 12px;">Speaking in "other languages"</div>
+                                    <div class="match-arrow">→</div>
+                                    <div class="match-right" onclick="app.selectMatch(this, true)">Proof of the Holy Spirit's power</div>
+                                </div>
+                                <div class="match-pair">
+                                    <div class="match-left" style="font-size: 12px;">Believers "devoted themselves"</div>
+                                    <div class="match-arrow">→</div>
+                                    <div class="match-right" onclick="app.selectMatch(this, true)">They committed completely</div>
                                 </div>
                             </div>
                         </div>
                     `
                 },
                 {
-                    title: "Scene Builder 🎨",
-                    subtitle: "Build the Pentecost scene",
-                    icon: "🎨",
-                    type: "scenebuilder",
+                    title: "Prophecy & Fulfillment 📜",
+                    subtitle: "Old Testament predictions",
+                    icon: "📜",
                     content: `
                         <p class="story-text">
-                            Drag the elements below to recreate what Pentecost looked like! Arrange them to show the incredible moment when the Holy Spirit arrived.
+                            Peter quoted Old Testament Scripture to show that Jesus was the promised Messiah. This shows how the Bible connects throughout history! Let's see what Peter quoted:
+                        </p>
+
+                        <div class="verse-box">
+                            "'Fellow Jews, listen to this: Jesus of Nazareth was a man accredited to you by God through miracles, wonders and signs, which God did among you through him, as you yourselves know. This man was handed over to you by God's deliberate plan and foreknowledge; and you, with the help of wicked men, put him to death by nailing him to the cross. But God raised him from the dead...'"
+                            <span class="verse-reference">Acts 2:22-24 (Peter quoting the prophets)</span>
+                        </div>
+
+                        <div class="verse-box">
+                            "'David said about him: I see the Lord always before me. Because he is at my right hand, I will not be shaken... Lord, you will fill me with joy in your presence.'"
+                            <span class="verse-reference">Acts 2:25-26 (Peter quoting Psalm 16)</span>
+                        </div>
+
+                        <div class="activity-section">
+                            <div class="activity-label">🎯 Understanding Prophecy</div>
+                            <div class="activity-question">Why did Peter quote Old Testament verses?</div>
+                            <div class="option-grid">
+                                <button class="option-btn" onclick="app.checkAnswer(this, true)">To prove Jesus was the Messiah that prophets predicted</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">Because he didn't have anything else to say</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">To make his speech longer</button>
+                            </div>
+                            <div class="feedback" id="feedback"></div>
+                        </div>
+                    `
+                },
+                {
+                    title: "The Greatest Impact 🌍",
+                    subtitle: "How this day changed history",
+                    icon: "🌍",
+                    content: `
+                        <p class="story-text">
+                            Acts 2 records one of the most important days in history! In ONE DAY, 3,000 people decided to follow Jesus. The Church was born. Let's understand the lasting impact:
+                        </p>
+
+                        <div class="verse-box">
+                            "'And the Lord added to their number daily those who were being saved.'"
+                            <span class="verse-reference">Acts 2:47</span>
+                        </div>
+
+                        <p class="story-text">
+                            Notice it says "daily." This wasn't a one-time event. Day after day, more people became believers. The movement kept growing and spreading.
                         </p>
 
                         <div class="activity-section">
-                            <div class="scene-builder" id="sceneBuilder">
-                                <div class="scene-instructions">← Drag items here to build the scene →</div>
+                            <div class="activity-label">📊 The Numbers</div>
+                            <div class="activity-question">Put these numbers in order from SMALLEST to LARGEST:</div>
+                            <div class="option-grid">
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">3,000 → 12 → 120</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, true)">12 → 120 → 3,000</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">120 → 3,000 → 12</button>
+                            </div>
+                            <div class="feedback" id="feedback"></div>
+                        </div>
+
+                        <div class="activity-section">
+                            <div class="activity-label">💭 Think About Impact</div>
+                            <div class="activity-question">If the church was still growing "daily," what does that tell us about the Holy Spirit's power?</div>
+                            <textarea style="width: 100%; padding: 0.75rem; border: 2px solid var(--border-color); border-radius: 8px; font-size: 14px; min-height: 80px;" placeholder="Your thoughts..."></textarea>
+                        </div>
+                    `
+                },
+                {
+                    title: "Memory Verses 📝",
+                    subtitle: "Key passages to remember",
+                    icon: "📝",
+                    content: `
+                        <p class="story-text">
+                            These are the MOST IMPORTANT verses from Acts 2. Many Christians memorize these! Can you complete them?
+                        </p>
+
+                        <div class="activity-section">
+                            <div class="activity-label">🎯 Complete the Verses</div>
+                            
+                            <div class="verse-comparison">
+                                <div class="verse-label">Acts 2:4 (The Promise)</div>
+                                <p style="font-size: 14px; margin-bottom: 0.75rem; font-style: italic;">
+                                    "All of them were filled with the __________ __________ and began to speak in other languages..."
+                                </p>
+                                <input type="text" class="verse-input" placeholder="Two words..." onchange="app.checkVerse(this, 'HOLY SPIRIT')">
                             </div>
 
-                            <div style="margin-top: 1rem;">
-                                <div style="font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 0.75rem; text-transform: uppercase;">Drag These Items:</div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
-                                    <div class="scene-item" draggable="true" ondragstart="app.dragSceneStart(event)">💨</div>
-                                    <div class="scene-item" draggable="true" ondragstart="app.dragSceneStart(event)">🔥</div>
-                                    <div class="scene-item" draggable="true" ondragstart="app.dragSceneStart(event)">👥</div>
-                                    <div class="scene-item" draggable="true" ondragstart="app.dragSceneStart(event)">🙏</div>
-                                    <div class="scene-item" draggable="true" ondragstart="app.dragSceneStart(event)">❤️</div>
-                                    <div class="scene-item" draggable="true" ondragstart="app.dragSceneStart(event)">🕊️</div>
-                                </div>
+                            <div class="verse-comparison">
+                                <div class="verse-label">Acts 2:36 (The Declaration)</div>
+                                <p style="font-size: 14px; margin-bottom: 0.75rem; font-style: italic;">
+                                    "'God has made this Jesus...both __________ and Messiah.'"
+                                </p>
+                                <input type="text" class="verse-input" placeholder="One word..." onchange="app.checkVerse(this, 'LORD')">
+                            </div>
+
+                            <div class="verse-comparison">
+                                <div class="verse-label">Acts 2:38 (The Invitation)</div>
+                                <p style="font-size: 14px; margin-bottom: 0.75rem; font-style: italic;">
+                                    "'Repent and be __________, every one of you...'"
+                                </p>
+                                <input type="text" class="verse-input" placeholder="One word..." onchange="app.checkVerse(this, 'BAPTIZED')">
+                            </div>
+
+                            <div class="verse-comparison">
+                                <div class="verse-label">Acts 2:47 (The Growth)</div>
+                                <p style="font-size: 14px; margin-bottom: 0.75rem; font-style: italic;">
+                                    "'And the Lord added to their number __________ those who were being saved.'"
+                                </p>
+                                <input type="text" class="verse-input" placeholder="One word..." onchange="app.checkVerse(this, 'DAILY')">
                             </div>
                         </div>
                     `
                 },
                 {
-                    title: "Memory Game 🎮",
-                    subtitle: "Test what you've learned",
-                    icon: "🎮",
-                    type: "memory",
+                    title: "Final Test 🧪",
+                    subtitle: "Prove your knowledge",
+                    icon: "🧪",
                     content: `
-                        <div class="activity-section">
-                            <div class="activity-label">🧠 Memory Match</div>
-                            <div class="activity-question">Tap cards to find matching pairs:</div>
-                            <div class="memory-grid" id="memoryGrid">
-                                <button class="memory-card" onclick="app.memoryFlip(this)" data-pair="1">?</button>
-                                <button class="memory-card" onclick="app.memoryFlip(this)" data-pair="2">?</button>
-                                <button class="memory-card" onclick="app.memoryFlip(this)" data-pair="1">?</button>
-                                <button class="memory-card" onclick="app.memoryFlip(this)" data-pair="3">?</button>
-                                <button class="memory-card" onclick="app.memoryFlip(this)" data-pair="2">?</button>
-                                <button class="memory-card" onclick="app.memoryFlip(this)" data-pair="4">?</button>
-                                <button class="memory-card" onclick="app.memoryFlip(this)" data-pair="3">?</button>
-                                <button class="memory-card" onclick="app.memoryFlip(this)" data-pair="4">?</button>
-                            </div>
-                            <div style="font-size: 12px; color: var(--text-light); margin-top: 1rem; text-align: center;">
-                                Wind & Spirit • Peter Bold • 3,000 Believe • Growing Church
-                            </div>
-                        </div>
-                    `
-                },
-                {
-                    title: "True or False? 🤔",
-                    subtitle: "Test your knowledge",
-                    icon: "🤔",
-                    type: "truefalse",
-                    content: `
+                        <p class="story-text">
+                            You've learned A LOT about Acts 2! Let's see how much you remember from reading these Bible passages. Answer these questions based on what you read:
+                        </p>
+
                         <div class="activity-section">
                             <div class="activity-label">❓ Question 1</div>
-                            <div class="activity-question">The Holy Spirit came as a violent wind and flames.</div>
+                            <div class="activity-question">How many people believed and were baptized on the day of Pentecost?</div>
                             <div class="option-grid">
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, true, 'tf1')">True ✓</button>
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, false, 'tf1')">False ✗</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">About 300</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, true)">About 3,000</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">About 30</button>
                             </div>
-                            <div class="feedback" id="feedback-tf1"></div>
+                            <div class="feedback" id="feedback1"></div>
                         </div>
 
                         <div class="activity-section">
                             <div class="activity-label">❓ Question 2</div>
-                            <div class="activity-question">Peter was never scared about knowing Jesus.</div>
+                            <div class="activity-question">What three signs showed the Holy Spirit had come? (Acts 2:2-4)</div>
                             <div class="option-grid">
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, false, 'tf2')">True ✓</button>
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, true, 'tf2')">False ✗</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, true)">A violent wind, tongues of fire, and speaking in languages</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">Thunder, lightning, and earthquakes</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">Angels singing, music, and bright lights</button>
                             </div>
-                            <div class="feedback" id="feedback-tf2"></div>
+                            <div class="feedback" id="feedback2"></div>
                         </div>
 
                         <div class="activity-section">
                             <div class="activity-label">❓ Question 3</div>
-                            <div class="activity-question">About 3,000 people believed and were baptized in one day!</div>
+                            <div class="activity-question">What did the early believers do? (Choose ALL that apply)</div>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>Devoted themselves to teaching</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>Shared everything they had</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>Met daily and prayed</span>
+                            </label>
+                        </div>
+
+                        <div class="activity-section">
+                            <div class="activity-label">❓ Question 4</div>
+                            <div class="activity-question">What changed Peter from denying Jesus to boldly proclaiming Him?</div>
                             <div class="option-grid">
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, true, 'tf3')">True ✓</button>
-                                <button class="option-btn" onclick="app.checkMultiAnswer(this, false, 'tf3')">False ✗</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, true)">Being filled with the Holy Spirit</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">He practiced his speech</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">His friends encouraged him</button>
                             </div>
-                            <div class="feedback" id="feedback-tf3"></div>
+                            <div class="feedback" id="feedback4"></div>
+                        </div>
+
+                        <div class="activity-section">
+                            <div class="activity-label">❓ Question 5</div>
+                            <div class="activity-question">What message did Peter declare about Jesus? (Acts 2:36)</div>
+                            <div class="option-grid">
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">He was a good teacher</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, true)">He is both Lord and Messiah</button>
+                                <button class="option-btn" onclick="app.checkAnswer(this, false)">He is coming back soon</button>
+                            </div>
+                            <div class="feedback" id="feedback5"></div>
                         </div>
                     `
                 },
                 {
                     title: "You Did It! 🏆",
-                    subtitle: "Amazing adventure complete!",
+                    subtitle: "Advanced study complete!",
                     icon: "🏆",
-                    type: "finale",
                     content: `
                         <div class="celebration">
                             <div class="trophy">🏆</div>
-                            <h2>You Completed the Adventure!</h2>
-                            <p style="font-size: 15px; color: var(--text-light); margin-bottom: 1.5rem;">You've learned about the incredible day when God's Holy Spirit changed everything!</p>
+                            <h2>Amazing Bible Scholar!</h2>
+                            <p style="font-size: 15px; color: var(--text-light); margin-bottom: 1.5rem;">You've completed an ADVANCED study of Acts 2! You've read and studied God's Word deeply!</p>
                         </div>
 
                         <div class="stats-grid">
                             <div class="stat-card">
-                                <div class="stat-number">13</div>
+                                <div class="stat-number">15</div>
                                 <div class="stat-label">Sections completed</div>
                             </div>
                             <div class="stat-card">
@@ -1117,28 +1134,31 @@
                         </div>
 
                         <div class="certificate">
-                            <div class="certificate-title">📜 Certificate of Achievement</div>
+                            <div class="certificate-title">📜 Advanced Bible Scholar Certificate</div>
                             <p style="font-size: 12px; color: var(--text-dark);">This certifies that</p>
-                            <div class="certificate-name">Bible Scholar</div>
-                            <p style="font-size: 14px; color: var(--text-dark); line-height: 1.6; margin: 1rem 0;">has successfully completed the Acts 2: The Holy Spirit Adventure and learned about the incredible story of Pentecost!</p>
-                            <p style="font-size: 11px; color: var(--text-light); margin-top: 1rem;">✝️ July 25, 2026</p>
-                        </div>
-
-                        <div class="quest-card" style="background: linear-gradient(135deg, #FFF3E0 0%, #E8F5E9 100%); border: 2px solid var(--warning); margin-top: 1rem;">
-                            <div class="activity-label">🚀 Your Challenge</div>
-                            <p class="story-text" style="margin-bottom: 1rem; font-size: 14px;">
-                                <strong>This Week:</strong> The believers in Acts 2 were bold about their faith. Find one person you can tell about Jesus—through your words, your kindness, or your example. Ask God to give you courage like Peter had!
-                            </p>
-                            <p class="story-text" style="margin: 0; font-size: 14px; color: var(--text-light);">
-                                Remember: You have the same Holy Spirit available to you that filled those believers 2,000 years ago! 🕊️
-                            </p>
+                            <div class="certificate-name">Bible Warrior</div>
+                            <p style="font-size: 14px; color: var(--text-dark); line-height: 1.6; margin: 1rem 0;">has successfully completed an ADVANCED study of Acts 2: The Holy Spirit Adventure! You've studied God's Word deeply and learned about the day the Church was born!</p>
+                            <p style="font-size: 11px; color: var(--text-light); margin-top: 1rem;">✝️ July 25, 2026 • Advanced Edition</p>
                         </div>
 
                         <div class="quest-card" style="background: var(--accent-light); margin-top: 1rem;">
-                            <p style="font-size: 14px; color: var(--accent); margin: 0; line-height: 1.6;">
-                                <strong>📖 Memory Verse:</strong><br>
-                                "All of them were filled with the Holy Spirit and began to speak in other languages as the Spirit enabled them."<br>
-                                <span style="font-size: 12px;">Acts 2:4</span>
+                            <p style="font-size: 14px; color: var(--accent); margin: 0; line-height: 1.8;">
+                                <strong>📖 What You've Learned:</strong><br>
+                                ✓ Acts 2:1-4: The Holy Spirit arrives<br>
+                                ✓ Acts 2:14-36: Peter's bold proclamation<br>
+                                ✓ Acts 2:37-41: The people respond<br>
+                                ✓ Acts 2:42-47: The Church begins and grows<br>
+                                ✓ You understand prophecy, transformation, and God's power!
+                            </p>
+                        </div>
+
+                        <div class="quest-card" style="background: linear-gradient(135deg, #FFF3E0 0%, #E8F5E9 100%); border: 2px solid var(--warning); margin-top: 1rem;">
+                            <div class="activity-label">🚀 Your Next Challenge</div>
+                            <p class="story-text" style="margin-bottom: 0.75rem; font-size: 14px;">
+                                <strong>This Week:</strong> Read Acts 2 yourself! Pick your favorite verse and memorize it. Then tell someone else about what you learned. The Holy Spirit that filled the believers at Pentecost is available to YOU today!
+                            </p>
+                            <p class="story-text" style="margin: 0; font-size: 14px; color: var(--text-light);">
+                                Remember: "All of them were filled with the Holy Spirit and began to speak in other languages as the Spirit enabled them." - Acts 2:4
                             </p>
                         </div>
                     `
@@ -1147,7 +1167,6 @@
 
             init() {
                 this.renderSection();
-                this.setupDragAndDrop();
             },
 
             renderSection() {
@@ -1195,9 +1214,8 @@
                 if (this.currentSection < this.sections.length - 1) {
                     this.currentSection++;
                     this.renderSection();
-                    this.setupDragAndDrop();
                 } else {
-                    alert('🎉 You completed the entire Acts 2 adventure! Share what you learned with your family!');
+                    alert('🎉 You completed the ADVANCED Acts 2 study! You are a true Bible scholar!');
                 }
             },
 
@@ -1205,7 +1223,6 @@
                 if (this.currentSection > 0) {
                     this.currentSection--;
                     this.renderSection();
-                    this.setupDragAndDrop();
                 }
             },
 
@@ -1223,51 +1240,17 @@
                 const feedback = button.parentElement.parentElement.querySelector('.feedback');
                 if (feedback) {
                     feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
-                    feedback.textContent = isCorrect ? '✓ Correct! Great job!' : '✗ Not quite, try again!';
+                    feedback.textContent = isCorrect ? '✓ Correct! Excellent!' : '✗ Try again!';
                 }
             },
 
-            checkMultiAnswer(button, isCorrect, id) {
-                const buttons = button.parentElement.querySelectorAll('.option-btn');
-                buttons.forEach(btn => btn.classList.remove('correct', 'incorrect'));
-
-                if (isCorrect) {
-                    button.classList.add('correct');
-                    this.score += 10;
-                } else {
-                    button.classList.add('incorrect');
-                }
-
-                const feedback = document.getElementById(`feedback-${id}`);
-                if (feedback) {
-                    feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
-                    feedback.textContent = isCorrect ? '✓ Correct! Awesome!' : '✗ Not quite, try again!';
-                }
-            },
-
-            checkScramble(input, answer) {
-                const isCorrect = input.value.toUpperCase() === answer;
-                const feedback = input.parentElement.querySelector('.feedback');
-                
-                if (isCorrect) {
-                    input.classList.add('correct');
-                    feedback.classList.add('show', 'correct');
-                    feedback.textContent = '✓ Perfect!';
-                    this.score += 10;
-                } else {
-                    feedback.classList.add('show', 'incorrect');
-                    feedback.textContent = `✗ Try again! Hint: ${answer}`;
-                }
-            },
-
-            checkBlank(id, answer) {
-                const input = document.getElementById(id);
+            checkBlank(input, answer) {
                 const isCorrect = input.value.toUpperCase() === answer;
                 
                 if (isCorrect) {
                     input.classList.add('correct');
-                    this.score += 10;
-                    alert('✓ Correct! "Lord" is the perfect answer!');
+                    this.score += 5;
+                    input.disabled = true;
                 }
             },
 
@@ -1276,7 +1259,8 @@
                 
                 if (isCorrect) {
                     input.classList.add('correct');
-                    this.score += 5;
+                    this.score += 10;
+                    input.disabled = true;
                 }
             },
 
@@ -1284,100 +1268,6 @@
                 button.classList.toggle('selected');
                 if (button.classList.contains('selected')) {
                     this.score += 5;
-                }
-            },
-
-            memoryFlip(card) {
-                if (card.classList.contains('matched') || card.classList.contains('flipped')) return;
-
-                card.classList.add('flipped');
-                const pair = card.dataset.pair;
-
-                const cardText = {
-                    '1': '💨 Holy Wind',
-                    '2': '🦁 Peter Bold',
-                    '3': '📢 3,000 Believe',
-                    '4': '🏘️ Church Grows'
-                };
-
-                card.textContent = cardText[pair];
-
-                const flipped = document.querySelectorAll('.memory-card.flipped');
-                if (flipped.length === 2) {
-                    setTimeout(() => {
-                        if (flipped[0].dataset.pair === flipped[1].dataset.pair) {
-                            flipped[0].classList.add('matched');
-                            flipped[1].classList.add('matched');
-                            flipped.forEach(c => c.classList.remove('flipped'));
-                            this.score += 20;
-                        } else {
-                            flipped.forEach(c => {
-                                c.classList.remove('flipped');
-                                c.textContent = '?';
-                            });
-                        }
-                    }, 800);
-                }
-            },
-
-            dragStart(e) {
-                e.dataTransfer.effectAllowed = 'move';
-                e.dataTransfer.setData('text/html', e.target.innerHTML);
-                e.target.dataset.source = e.target.dataset.category;
-            },
-
-            dragSceneStart(e) {
-                e.dataTransfer.effectAllowed = 'move';
-                e.dataTransfer.setData('text/html', e.target.innerHTML);
-            },
-
-            setupDragAndDrop() {
-                const zones = document.querySelectorAll('.drop-zone');
-                const builder = document.getElementById('sceneBuilder');
-
-                zones.forEach(zone => {
-                    zone.addEventListener('dragover', (e) => {
-                        e.preventDefault();
-                        zone.classList.add('drag-over');
-                    });
-
-                    zone.addEventListener('dragleave', () => {
-                        zone.classList.remove('drag-over');
-                    });
-
-                    zone.addEventListener('drop', (e) => {
-                        e.preventDefault();
-                        zone.classList.remove('drag-over');
-                        const item = e.dataTransfer.getData('text/html');
-                        const sourceZone = e.dataTransfer.effectAllowed;
-                        
-                        const el = document.createElement('div');
-                        el.className = 'draggable-item in-zone';
-                        el.innerHTML = item;
-                        zone.appendChild(el);
-                    });
-                });
-
-                if (builder) {
-                    builder.addEventListener('dragover', (e) => {
-                        e.preventDefault();
-                        builder.style.borderColor = 'var(--accent)';
-                    });
-
-                    builder.addEventListener('dragleave', () => {
-                        builder.style.borderColor = 'var(--border-color)';
-                    });
-
-                    builder.addEventListener('drop', (e) => {
-                        e.preventDefault();
-                        builder.style.borderColor = 'var(--border-color)';
-                        const item = e.dataTransfer.getData('text/html');
-                        
-                        const el = document.createElement('div');
-                        el.className = 'scene-item';
-                        el.innerHTML = item;
-                        builder.appendChild(el);
-                    });
                 }
             }
         };
